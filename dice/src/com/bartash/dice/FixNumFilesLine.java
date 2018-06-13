@@ -28,11 +28,9 @@ public class FixNumFilesLine {
       // https://stackoverflow.com/questions/25640805/how-to-copy-a-file-line-by-line-keeping-its-original-line-breaks
       try(Scanner s=new Scanner(newFile).useDelimiter("(?<=\n)|(?!\n)(?<=\r)");
           FileWriter out= new FileWriter(file)) {
-
         while(s.hasNext()){
-          String line=s.next();
-          String updatedLine = replaceKeys(line);
-              out.write(updatedLine);
+          String updatedLine = replaceKeys(s.next());
+          out.write(updatedLine);
         }
       }
     } catch (Exception e) {
