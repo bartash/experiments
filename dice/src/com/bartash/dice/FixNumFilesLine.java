@@ -5,6 +5,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
 
+/**
+ * Copy a file in place, but for each line that contains "numFiles",
+ * copy the line aagin with numFiles replaced with numFilesErasureCoded
+ */
 public class FixNumFilesLine {
   public static void main(String[] args) {
 
