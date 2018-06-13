@@ -32,7 +32,6 @@ public class FixNumFilesLine {
         while(s.hasNext()){
           String line=s.next();
           String updatedLine = replaceKeys(line);
-//          String updatedLine = line;
               out.write(updatedLine);
         }
       }
@@ -44,8 +43,11 @@ public class FixNumFilesLine {
   }
 
   private static String replaceKeys(String line) {
-    line = line.replaceFirst("hello", "goodbye");
-    return line;
+    if (!line.contains("numFiles")) {
+      return line;
+    }
+    String newLine = line.replaceFirst("numFiles", "numFilesErasureCoded");
+    return line + newLine;
   }
 }
 
