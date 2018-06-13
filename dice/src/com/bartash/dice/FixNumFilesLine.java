@@ -31,8 +31,8 @@ public class FixNumFilesLine {
 
         while(s.hasNext()){
           String line=s.next();
-//          String updatedLine = replaceKeys(line);
-          String updatedLine = line;
+          String updatedLine = replaceKeys(line);
+//          String updatedLine = line;
               out.write(updatedLine);
         }
       }
@@ -41,6 +41,11 @@ public class FixNumFilesLine {
       System.out.println("Caught " + e);
     }
 
+  }
+
+  private static String replaceKeys(String line) {
+    line = line.replaceFirst("hello", "goodbye");
+    return line;
   }
 }
 
