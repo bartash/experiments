@@ -48,7 +48,9 @@ public class FixNumFilesLine {
     if (!line.contains("numFiles")) {
       return line;
     }
-    String newLine = line.replaceFirst("numFiles", "numFilesErasureCoded");
+    String newLine = line.replaceFirst("numFiles", "numFilesErasureCoded")
+        .replaceFirst("\\d+", "0");
+
     return line + newLine;
   }
 }
