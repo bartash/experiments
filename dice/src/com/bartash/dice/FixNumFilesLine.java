@@ -37,6 +37,10 @@ public class FixNumFilesLine {
           out.write(updatedLine);
         }
       }
+      boolean delete = newFile.delete();
+      if (!delete) {
+        throw new RuntimeException("could not delete " + file);
+      }
     } catch (Exception e) {
       e.printStackTrace();
       System.out.println("Caught " + e);
@@ -48,7 +52,7 @@ public class FixNumFilesLine {
     if (!line.contains("numFiles")) {
       return line;
     }
-    String newLine = line.replaceFirst("numFiles", "numFilesErasureCoded")
+    String newLine = line.replaceFirst("numFiles {11}", "numFilesErasureCoded")
         .replaceFirst("\\d+", "0");
 
     return line + newLine;
