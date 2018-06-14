@@ -3,6 +3,8 @@ package com.bartash.dice;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Copy a file in place, but for each line that contains "numFiles",
@@ -57,7 +59,19 @@ public class FixNumFilesLine {
       // if the numbers weren't all lined up
       newLine = line.replaceFirst("numFiles", "numFilesErasureCoded");
     }
-    newLine = newLine.replaceFirst("\\d+", "0");
+    Matcher matcher = Pattern.compile("\\d+").matcher(newLine);
+    boolean found = matcher.find();
+    if (!found) {
+      throw new RuntimeException("could not find integer in  " + newLine);
+    }
+    String paddedZero = "0";
+    int oldNumLength = matcher.start() - matcher.end();
+    for (int i = 1 ; i < oldNumLength; i++) {
+      paddedZero += " ";
+    }
+    StringBuilder sb = new StringBuilder(newLine);
+    sb.replace(matcher.start(), matcher.end(), paddedZero);
+    newLine = sb.toString();
 
     return line + newLine;
   }
