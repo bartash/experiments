@@ -65,10 +65,12 @@ public class FixNumFilesLine {
       throw new RuntimeException("could not find integer in  " + newLine);
     }
     String paddedZero = "0";
-    int oldNumLength = matcher.start() - matcher.end();
+    int oldNumLength = matcher.end() - matcher.start() ;
+//    System.out.println("oldNumLength = " + oldNumLength);
     for (int i = 1 ; i < oldNumLength; i++) {
       paddedZero += " ";
     }
+//    System.out.println("paddedZero = '" + paddedZero + "'");
     StringBuilder sb = new StringBuilder(newLine);
     sb.replace(matcher.start(), matcher.end(), paddedZero);
     newLine = sb.toString();
