@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
  * copy the line aagin with numFiles replaced with numFilesErasureCoded
  */
 public class FixNumFilesLine {
+
+  private static final boolean debug = false;
+
   public static void main(String[] args) {
 
     try {
@@ -31,9 +34,9 @@ public class FixNumFilesLine {
       }
 
       // https://stackoverflow.com/questions/25640805/how-to-copy-a-file-line-by-line-keeping-its-original-line-breaks
-      try(Scanner s = new Scanner(newFile).useDelimiter("(?<=\n)|(?!\n)(?<=\r)");
-          FileWriter out = new FileWriter(file)) {
-        while(s.hasNext()){
+      try (Scanner s = new Scanner(newFile).useDelimiter(
+          "(?<=\n)|(?!\n)(?<=\r)"); FileWriter out = new FileWriter(file)) {
+        while (s.hasNext()) {
           String updatedLine = replaceKeys(s.next());
           out.write(updatedLine);
         }
@@ -59,18 +62,23 @@ public class FixNumFilesLine {
       // if the numbers weren't all lined up
       newLine = line.replaceFirst("numFiles", "numFilesErasureCoded");
     }
-    Matcher matcher = Pattern.compile("\\d+").matcher(newLine);
+    Matcher matcher = Pattern.compile("\\d+")
+        .matcher(newLine);
     boolean found = matcher.find();
     if (!found) {
       throw new RuntimeException("could not find integer in  " + newLine);
     }
     String paddedZero = "0";
-    int oldNumLength = matcher.end() - matcher.start() ;
-//    System.out.println("oldNumLength = " + oldNumLength);
-    for (int i = 1 ; i < oldNumLength; i++) {
+    int oldNumLength = matcher.end() - matcher.start();
+    if (debug) {
+      System.out.println("oldNumLength = " + oldNumLength);
+    }
+    for (int i = 1; i < oldNumLength; i++) {
       paddedZero += " ";
     }
-//    System.out.println("paddedZero = '" + paddedZero + "'");
+    if (debug) {
+      System.out.println("paddedZero = '" + paddedZero + "'");
+    }
     StringBuilder sb = new StringBuilder(newLine);
     sb.replace(matcher.start(), matcher.end(), paddedZero);
     newLine = sb.toString();
