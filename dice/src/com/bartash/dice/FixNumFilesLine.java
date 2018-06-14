@@ -68,19 +68,19 @@ public class FixNumFilesLine {
     if (!found) {
       throw new RuntimeException("could not find integer in  " + newLine);
     }
-    String paddedZero = "0";
+    StringBuilder paddedZero = new StringBuilder("0");
     int oldNumLength = matcher.end() - matcher.start();
     if (debug) {
       System.out.println("oldNumLength = " + oldNumLength);
     }
     for (int i = 1; i < oldNumLength; i++) {
-      paddedZero += " ";
+      paddedZero.append(" ");
     }
     if (debug) {
       System.out.println("paddedZero = '" + paddedZero + "'");
     }
     StringBuilder sb = new StringBuilder(newLine);
-    sb.replace(matcher.start(), matcher.end(), paddedZero);
+    sb.replace(matcher.start(), matcher.end(), paddedZero.toString());
     newLine = sb.toString();
 
     return line + newLine;
