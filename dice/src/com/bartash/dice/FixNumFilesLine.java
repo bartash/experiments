@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /**
  * Copy a file in place, but for each line that contains "numFiles",
- * copy the line aagin with numFiles replaced with numFilesErasureCoded
+ * copy the line again with numFiles replaced with numFilesErasureCoded
  */
 public class FixNumFilesLine {
 
