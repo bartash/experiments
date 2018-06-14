@@ -52,7 +52,7 @@ public class FixNumFilesLine {
       return line;
     }
     // sometimes the output has all the numbers lined up
-    String newLine = line.replaceFirst("numFiles {11}", "numFilesErasureCoded");
+    String newLine = line.replaceFirst("numFiles {12}", "numFilesErasureCoded");
     if (!newLine.contains("numFilesErasureCoded")) {
       // if the numbers weren't all lined up
       newLine = line.replaceFirst("numFiles", "numFilesErasureCoded");
