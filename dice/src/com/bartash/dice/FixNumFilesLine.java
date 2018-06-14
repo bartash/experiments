@@ -1,4 +1,3 @@
-
 package com.bartash.dice;
 
 import java.io.File;
@@ -30,8 +29,8 @@ public class FixNumFilesLine {
       }
 
       // https://stackoverflow.com/questions/25640805/how-to-copy-a-file-line-by-line-keeping-its-original-line-breaks
-      try(Scanner s=new Scanner(newFile).useDelimiter("(?<=\n)|(?!\n)(?<=\r)");
-          FileWriter out= new FileWriter(file)) {
+      try(Scanner s = new Scanner(newFile).useDelimiter("(?<=\n)|(?!\n)(?<=\r)");
+          FileWriter out = new FileWriter(file)) {
         while(s.hasNext()){
           String updatedLine = replaceKeys(s.next());
           out.write(updatedLine);
@@ -53,12 +52,12 @@ public class FixNumFilesLine {
       return line;
     }
     // sometimes the output has all the numbers lined up
-    String newLine = line.replaceFirst("numFiles {11}", "numFilesErasureCoded")
-        .replaceFirst("\\d+", "0");
+    String newLine = line.replaceFirst("numFiles {11}", "numFilesErasureCoded");
     if (!newLine.contains("numFilesErasureCoded")) {
       // if the numbers weren't all lined up
       newLine = line.replaceFirst("numFiles", "numFilesErasureCoded");
     }
+    newLine = newLine.replaceFirst("\\d+", "0");
 
     return line + newLine;
   }
