@@ -52,8 +52,13 @@ public class FixNumFilesLine {
     if (!line.contains("numFiles")) {
       return line;
     }
+    // sometimes the output has all the numbers lined up
     String newLine = line.replaceFirst("numFiles {11}", "numFilesErasureCoded")
         .replaceFirst("\\d+", "0");
+    if (newLine.contains("numFiles")) {
+      // if the numbers weren't all lined up
+      newLine = line.replaceFirst("numFiles", "numFilesErasureCoded");
+    }
 
     return line + newLine;
   }
