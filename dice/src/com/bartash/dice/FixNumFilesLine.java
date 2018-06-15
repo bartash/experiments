@@ -70,6 +70,7 @@ public class FixNumFilesLine {
     }
     StringBuilder paddedZero = new StringBuilder("0");
     int oldNumLength = matcher.end() - matcher.start();
+    assert oldNumLength < 1 : "backwards";
     if (debug) {
       System.out.println("oldNumLength = " + oldNumLength);
     }
