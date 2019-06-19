@@ -7,7 +7,8 @@ class jdbc {
   private static final String sqlStatementCreate = "CREATE TABLE if not exists helloworld (message String) STORED AS PARQUET";
   private static final String sqlStatementInsert = "INSERT INTO helloworld VALUES (\"helloworld\")";
 
-  private static final String sqlCompiledQuery = "INSERT INTO tbl_mindarray (source_ip,destination_ip,protocol_number," +
+  private static final String sqlCompiledQuery = "INSERT INTO foo (a)" + " VALUES(?)";
+  private static final String oldsqlCompiledQuery = "INSERT INTO tbl_mindarray (source_ip,destination_ip,protocol_number," +
       "source_port,destination_port,packet,volume,duration,pps,bps,bpp,source_latitude,source_longitude," +
       "source_city,source_country,destination_latitude,destination_longitude ,destination_city ,destination_country ," +
       "ingress_volume ,egress_volume ,ingress_packet ,egress_packet ,source_if_index ,destination_if_index," +
@@ -29,12 +30,12 @@ class jdbc {
       Statement statement = connection.createStatement();
       statement.execute("drop table foo");
       statement.execute("create table   foo(a varchar(2048))");
-      statement.execute("insert into foo values('str')");
-      statement.execute("insert into foo values('str')");
+//      statement.execute("insert into foo values('str')");
+//      statement.execute("insert into foo values('str')");
     } catch (Exception e) {
       e.printStackTrace();
     }
-//    writeInABatchWithCompiledQuery(100);
+    writeInABatchWithCompiledQuery(100);
 
     System.out.println("Done");
 
@@ -70,7 +71,7 @@ class jdbc {
 
     // int total = 1000000*1000;
 
-    int total = 1000*1000;
+    int total = 100*1000;
 
     int counter =0;
 
