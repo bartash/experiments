@@ -30,6 +30,7 @@ class jdbc {
       Statement statement = connection.createStatement();
       statement.execute("drop table foo");
       statement.execute("create table   foo(a varchar(2048))");
+      statement.executeBatch()
 //      statement.execute("insert into foo values('str')");
 //      statement.execute("insert into foo values('str')");
     } catch (Exception e) {
