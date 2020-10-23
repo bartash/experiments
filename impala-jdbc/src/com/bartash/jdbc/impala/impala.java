@@ -29,7 +29,7 @@ public class impala {
     // jdbc:impala://coordinator-asherman-run-run-run.env-sxmzbh.dwx-dev-public.cloudera.com:443/default;AuthMech=3;transportMode=http;httpPath=cliservice;ssl=1
     try (Connection con = DriverManager
         .getConnection(
-            "jdbc:impala://localhost:28000/default;transportMode=http;httpPath=cliservice;AuthMech=0")) {
+            "jdbc:impala://impala-proxy-asherman-proxy.env-zrd68v.local.dwx.dev.cldr.work:443/default;AuthMech=3;transportMode=http;httpPath=cliservice;ssl=1")) {
       System.out.println("connected");
       // create statement
       Statement stmt = con.createStatement();
