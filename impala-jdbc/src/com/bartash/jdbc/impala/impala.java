@@ -27,9 +27,8 @@ public class impala {
     }
     System.out.println("before trying to connect");
     // jdbc:impala://coordinator-asherman-run-run-run.env-sxmzbh.dwx-dev-public.cloudera.com:443/default;AuthMech=3;transportMode=http;httpPath=cliservice;ssl=1
-    try (Connection con = DriverManager
-        .getConnection(
-            "jdbc:impala://impala-proxy-asherman-proxy.env-zrd68v.local.dwx.dev.cldr.work:443/default;AuthMech=3;transportMode=http;httpPath=cliservice;ssl=1;UID=;PWD=")) {
+    String url = "jdbc:impala://impala-proxy-asherman-proxy.env-zrd68v.local.dwx.dev.cldr.work:443/default;AuthMech=3;transportMode=http;httpPath=cliservice;ssl=1";
+    try (Connection con = DriverManager.getConnection(url + ";UID=;PWD=")) {
       System.out.println("connected");
       // create statement
       Statement stmt = con.createStatement();
