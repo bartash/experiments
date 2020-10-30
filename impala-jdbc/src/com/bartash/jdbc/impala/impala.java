@@ -38,7 +38,10 @@ public class impala {
       System.out.println("caught " + sqlException);
     }
     long start = System.currentTimeMillis();
-    try (Connection con = DriverManager.getConnection(url + ";UID=;PWD=")) {
+    StringBuilder connect = new StringBuilder(url);
+    connect.append(";LogLevel=6;LogPath=/tmp"); // Simba logs to /tmp/Impala_connection_0.log /tmp/ImpalaJDBC_driver.log
+    connect.append(";UID=;PWD="); // No credentials
+    try (Connection con = DriverManager.getConnection(connect.toString())) {
       System.out.println("connected after " + (System.currentTimeMillis() - start) + " ms" );
       // create statement
       Statement stmt = con.createStatement();
