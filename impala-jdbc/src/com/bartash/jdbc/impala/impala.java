@@ -27,7 +27,7 @@ public class impala {
     }
     System.out.println("before trying to connect");
     // jdbc:impala://coordinator-asherman-run-run-run.env-sxmzbh.dwx-dev-public.cloudera.com:443/default;AuthMech=3;transportMode=http;httpPath=cliservice;ssl=1
-    String url = "jdbc:impala://localhost:26013/default;AuthMech=3;transportMode=http;httpPath=cliservice";
+    String url = "jdbc:impala://localhost:25012/default;AuthMech=3;transportMode=http;httpPath=cliservice";
 
     try {
       Driver driver = DriverManager.getDriver(url);
