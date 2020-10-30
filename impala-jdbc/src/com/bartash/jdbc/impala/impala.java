@@ -37,8 +37,9 @@ public class impala {
     } catch (SQLException sqlException) {
       System.out.println("caught " + sqlException);
     }
+    long start = System.currentTimeMillis();
     try (Connection con = DriverManager.getConnection(url + ";UID=;PWD=")) {
-      System.out.println("connected");
+      System.out.println("connected after " + (System.currentTimeMillis() - start) + " ms" );
       // create statement
       Statement stmt = con.createStatement();
       // execute statement
@@ -49,6 +50,7 @@ public class impala {
       }
     } catch (Exception e) {
       System.out.println("caught " + e);
+      System.out.println("time since start  " + (System.currentTimeMillis() - start) + " ms" );
       e.printStackTrace();
     }
   }
