@@ -27,7 +27,7 @@ public class impala {
     }
     System.out.println("before trying to connect");
     // jdbc:impala://coordinator-asherman-run-run-run.env-sxmzbh.dwx-dev-public.cloudera.com:443/default;AuthMech=3;transportMode=http;httpPath=cliservice;ssl=1
-    String url = "jdbc:impala://localhost:25012/default;AuthMech=3;transportMode=http;httpPath=cliservice";
+    String url = "jdbc:impala://localhost:28000/default;AuthMech=3;transportMode=http;httpPath=cliservice";
 
     try {
       Driver driver = DriverManager.getDriver(url);
@@ -51,6 +51,11 @@ public class impala {
       while (resultSet.next()) {
         String name = resultSet.getString(1);
         System.out.println("db = " + name);
+      }
+      ResultSet resultSet2 = stmt.executeQuery("show tables");
+      while (resultSet2.next()) {
+        String name = resultSet2.getString(1);
+        System.out.println("tbl = " + name);
       }
     } catch (Exception e) {
       System.out.println("caught " + e);
