@@ -28,7 +28,8 @@ public class impala {
     System.out.println("before trying to connect");
     // jdbc:impala://coordinator-asherman-run-run-run.env-sxmzbh.dwx-dev-public.cloudera.com:443/default;AuthMech=3;transportMode=http;httpPath=cliservice;ssl=1
 //    String url = "jdbc:impala://coordinator-asherman.env-gj7xn5.dw.xcu2-8y8x.local.dwx.dev.cldr.work:443/default;AuthMech=3;transportMode=http;httpPath=cliservice;ssl=1";
-    String url = "jdbc:impala://localhost:28000/default;AuthMech=3;transportMode=http;httpPath=cliservice";
+//    String url = "jdbc:impala://localhost:28000/default;AuthMech=3;transportMode=http;httpPath=cliservice";
+    String url = "jdbc:impala://impala-proxy-asherman.env-9qls4k.dw.xcu2-8y8x.dev.cldr.work:443/default;AuthMech=12;transportMode=http;httpPath=cliservice;ssl=1;auth=browser"; // SSO url
 
     try {
       Driver driver = DriverManager.getDriver(url);
