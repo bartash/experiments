@@ -3,7 +3,8 @@ import java.sql.*;
 
 class jdbc {
 
-  private static final String CONNECTION_URL = "jdbc:impala://localhost:21050" ;
+  private static final String CONNECTION_URL = "jdbc:hive2://hs2-asherman-hive.dw-env-pwttjn.xcu2-8y8x.local.dwx.dev.cldr.work/default;transportMode=http;httpPath=cliservice;socketTimeout=60;ssl=true;retries=3;" ;
+//  private static final String CONNECTION_URL = "jdbc:impala://localhost:21050" ;
   private static final String sqlStatementCreate = "CREATE TABLE if not exists helloworld (message String) STORED AS PARQUET";
   private static final String sqlStatementInsert = "INSERT INTO helloworld VALUES (\"helloworld\")";
 
@@ -30,7 +31,7 @@ class jdbc {
       Statement statement = connection.createStatement();
       statement.execute("drop table foo");
       statement.execute("create table   foo(a varchar(2048))");
-      statement.executeBatch()
+      statement.executeBatch();
 //      statement.execute("insert into foo values('str')");
 //      statement.execute("insert into foo values('str')");
     } catch (Exception e) {
@@ -46,7 +47,9 @@ class jdbc {
   private static Connection connectViaDS() throws Exception {
     Connection connection = null;
 
-    Class.forName("com.cloudera.impala.jdbc41.Driver");
+//    Class.forName("com.cloudera.impala.jdbc41.Driver");
+    Class.forName("org.apache.hive.jdbc.HiveDriver");
+
 
     connection = DriverManager.getConnection(CONNECTION_URL);
 
@@ -181,7 +184,9 @@ class jdbc {
       e.printStackTrace();
     } finally {
       try {
-        connection.close();
+        if (connection != null) {
+          connection.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       }
