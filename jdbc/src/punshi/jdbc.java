@@ -3,7 +3,7 @@ import java.sql.*;
 
 class jdbc {
 
-  private static final String CONNECTION_URL = "jdbc:hive2://hs2-asherman-hive.dw-env-pwttjn.xcu2-8y8x.local.dwx.dev.cldr.work/default;transportMode=http;httpPath=cliservice;socketTimeout=60;ssl=true;retries=3;" ;
+  private static final String CONNECTION_URL = "jdbc:hive2://hs2-asherman-hive.dw-env-pwttjn.xcu2-8y8x.local.dwx.dev.cldr.work:443/default;transportMode=http;httpPath=cliservice;socketTimeout=60;ssl=true;retries=3;" ;
 //  private static final String CONNECTION_URL = "jdbc:impala://localhost:21050" ;
   private static final String sqlStatementCreate = "CREATE TABLE if not exists helloworld (message String) STORED AS PARQUET";
   private static final String sqlStatementInsert = "INSERT INTO helloworld VALUES (\"helloworld\")";
