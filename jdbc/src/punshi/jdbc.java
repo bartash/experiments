@@ -3,6 +3,10 @@ import java.sql.*;
 
 class jdbc {
 
+   // MAYBE use beeline instead for hive
+  // from Impala dev build:
+  // beeline -u 'jdbc:hive2://hs2-asherman.dw-env-8fksf4.xcu2-8y8x.local.dwx.dev.cldr.work/default;transportMode=http;httpPath=cliservice;socketTimeout=60;ssl=true;retries=3;'  -n admin -p admin-password
+
   private static final String CONNECTION_URL = "jdbc:hive2://hs2-asherman-hive.dw-env-pwttjn.xcu2-8y8x.local.dwx.dev.cldr.work:443/default;transportMode=http;httpPath=cliservice;socketTimeout=60;ssl=true;retries=3;" ;
 //  private static final String CONNECTION_URL = "jdbc:impala://localhost:21050" ;
   private static final String sqlStatementCreate = "CREATE TABLE if not exists helloworld (message String) STORED AS PARQUET";
